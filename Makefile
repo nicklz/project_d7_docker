@@ -10,7 +10,7 @@ up:
 	docker-compose$(WINDOWS_SUPPORT) up -d --remove-orphans
 	@echo "Syncing folders... this may take a few minutes"
 	@echo "-------------------------------------------------"
-	@echo "-------------------------------------------------"
+	@echo "------------------DRUPAL 7-----------------------"
 	@echo "-------------------------------------------------"
 	@echo "Visit http://$(PROJECT_BASE_URL):$(PROJECT_PORT)3"
 	@echo "-------------------------------------------------"
@@ -58,14 +58,12 @@ install:
 	cp config/drupal/settings.php data/www/project$(PROJECT_GIT_DOCROOT)/sites/local.$(PROJECT_NAME).com/settings.php
 
 	sed -i -e 's/PROJECT_NAME/$(PROJECT_NAME)/g' data/www/project$(PROJECT_GIT_DOCROOT)/sites/local.$(PROJECT_NAME).com/settings.php
-	make composer
 
 
 sync:
 	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'echo "drop database $(PROJECT_NAME);" | mysql -uroot -h mysql --password="root"'
 	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'echo "create database $(PROJECT_NAME);" | mysql -uroot -h mysql --password="root"'
-	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'mysql -u root -h mysql -p $(PROJECT_NAME) --password="root" < /var/www/dump.sql'
-	make cr
+
 
 cr:
 	@echo "Clearing Drupal Caches"

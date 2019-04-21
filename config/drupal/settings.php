@@ -216,7 +216,7 @@ $databases = array (
     array (
       'default' =>
         array (
-          'database' => 'PROJECTNAME',
+          'database' => 'PROJECT_NAME',
           'username' => 'root',
           'password' => 'root',
           'host' => 'mysql',
