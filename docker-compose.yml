@@ -104,6 +104,6 @@ services:
     command: install
   drush:
     container_name: ${PROJECT_NAME}_drush
-    image: drush/drush:7
+    image: elegoev/drupal-drush-7
     volumes:
     - ./data/www:/var/www:cached # Data.
