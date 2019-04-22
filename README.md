@@ -5,7 +5,7 @@
 3. cd projectd7
 4. cp .env.example .env && vi .env (Configure fields here)
 5. make install && make up && make sync (repeat make up && make sync if this fails)
-6. make rsync
+6. make rsync (the ctrl + Z if you don't want to watch the rsync output)
 7. Add 127.0.0.1 local.projectd7.com to hosts file
 8. Visit project website entered in .env file (example: local.projectd7.com:30003)
 
