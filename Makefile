@@ -61,6 +61,7 @@ install:
 
 
 sync:
+	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'rm -rf /root/.composer && composer global require drush/drush:7.*'
 	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'echo "drop database $(PROJECT_NAME);" | mysql -uroot -h mysql --password="root"'
 	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'echo "create database $(PROJECT_NAME);" | mysql -uroot -h mysql --password="root"'
 	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'mysql -u root -h mysql -p $(PROJECT_NAME) --password="root" < /var/www/dump.sql'
@@ -68,7 +69,7 @@ sync:
 
 cr:
 	@echo "Clearing Drupal Caches"
-	docker-compose$(WINDOWS_SUPPORT) run  drush cc all --root=/var/www/project$(PROJECT_GIT_DOCROOT)
+	docker$(WINDOWS_SUPPORT) exec -u 0 -ti $(PROJECT_NAME)_web bash -c  'drush cc all --root=/var/www/project$(PROJECT_GIT_DOCROOT)'
 
 logs:
 	@echo "Displaying past containers logs"
