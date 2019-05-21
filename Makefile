@@ -53,7 +53,7 @@ install:
 	@echo "Cleaning up workspace"
 	rm -rf data/www/project/ > /dev/null 2>&1
 	@echo "Cloning codebase"
-	git clone $(PROJECT_GIT) data/www/project/$(PROJECT_GIT_DOCROOT)
+	git clone $(PROJECT_GIT) data/www/project$(PROJECT_GIT_BASE)
 	mkdir data/www/project$(PROJECT_GIT_DOCROOT)/sites/local.$(PROJECT_NAME).com
 	cp config/drupal/settings.php data/www/project$(PROJECT_GIT_DOCROOT)/sites/local.$(PROJECT_NAME).com/settings.php
 
